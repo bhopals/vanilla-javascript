@@ -11,6 +11,7 @@
 		soloOutWarm: ['rowing','running','hiking','cycling','rock climbing'],
 		soloOutCold: ['snowshoeing','downhill skiing','cross-country skiing','ice skating']
 	}
+
 	let state = {};
 	let category = 'all';
 
@@ -57,15 +58,26 @@
 
 		const into = document.querySelector('.conditions');
 
-		ReactDOM.render(<Forecast {...state} />, into);
+		let container = document.createElement('div');
+		let cityPara = document.createElement('p');
+		cityPara.setAttribute('class','city');
+		cityPara.textContent = state.city;
 
-		function Forecast(props) {
-			return (
-				<div>
-					<p className="city">{props.city}</p>
-					<p>{props.degCInt}&#176; C / {props.degFInt}&#176; F <img src={props.icon} alt={props.condition} /></p>
-				</div>
-			)
+		
+		let conditionsPara = document.createElement('p');
+		conditionsPara.textContent = `${state.degCInt} \u00B0 C /  ${state.degFInt} F`;
+		let iconImage = document.createElement('img');
+		iconImage.setAttribute('src',state.icon);
+		iconImage.setAttribute('alt',state.condition);
+		
+		conditionsPara.appendChild(iconImage);
+		container.appendChild(cityPara);
+		container.appendChild(conditionsPara);
+
+		if(document.querySelector('.conditions dic')){
+			into.replaceChild(container, document.querySelector('.conditions div'));
+		} else {
+			into.appendChild(container);
 		}
 
 		updateActivityList();
@@ -114,24 +126,28 @@
 
 		const into = document.querySelector('.activities');
 
-		ReactDOM.render(<Activities {...state} />, into);
+		let container = document.createElement('div');
+		let list = document.createElement('ul');
+		state.activities.forEach(function(activity, index){
+			let listItem = document.createElement('li');
+			listItem.setAttribute('key', index);
+			listItem.textContent = activity;
+			list.appendChild(listItem);
+		})
 
-		function Activities(props) {
-			const activitiesList = props.activities.map(function(activity, index) {
-				return <li key={index}>{activity}</li>
-			});
-			return (
-				<div>
-					<ul>{activitiesList}</ul>
-				</div>
-			)
+		container.appendChild(list);
+
+		if(document.querySelector('.into div')){ 
+			into.replaceChild(container, document.querySelector('.into div'));
+		} else {
+			into.appendChild(container);
 		}
-
+		
 		$('.results').slideDown(300);
 	}
 
 	// handle ajax failure
 	function updateUIFailure() {
-		$(".conditions").text("Weather information unavailable");
+		document.querySelector('.conditions').textContent = 'Weather information unavailable';
 	}
 })();

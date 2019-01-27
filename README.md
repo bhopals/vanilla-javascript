@@ -4,6 +4,8 @@
 
 Vanilla JS is the name to refer using plain/core JavaScript without any additional libraries like JQuery. 
 
+The Demo site demonstrate how we can unplug library and framework code and replace that with Vanilla JS, which not only gives performace benefits but also a lot more cleaner code base.
+
 
 ### Learning App Building with Vanilla JavaScript
 
@@ -48,13 +50,13 @@ $('.option div').removeClass('nameOFClass') - This selector remove passed class 
 
 However, document.querySelectorAll('.option div') does not iterate implicitly but returns multiple elements in a(n) array-like object, hence we need to form a loop to perfrom required operaton on each selector.
 
-``
+```
 
 document.querySelectorAll('.options div').forEach(function(el){
     el.classList.remove('selected');
 })
 
-``
+```
 
 #### Replace Event Listeners
     -   Select Element
@@ -77,14 +79,15 @@ $('.nav li').on('click', function(){
 
 document.querySelector('li').addEventListener('click', function(e){
     //What should happen
-}, false); //The third element is an optional element which specify whether the event uses event capturing (Which modern browser by default assume false if the event is not specified )
+}, false); //The third element is an optional element which specify whether the event uses event capturing 
+(Which modern browser by default assume false if the event is not specified )
 
 bubbling phase - starting with the target’s parent and ending with the Window. 
 capturing phase - starting from the Window to the target’s parent.
 
 false -> Register the event handler for the bubbling phase.
 true -> Register the event handler for the capturing phase.
-```
+
 OR 
 
 For event registration in vanilla javascript
@@ -95,11 +98,48 @@ OR
 You can register event by :
 <li onclick="listHandler"></li> (although best practice is to separate javascript code from html code )
 
+```
+
 
 **Working with "THIS" object**
 So instead of *$(this).hasClass('className')*, we can use *event.target.classList.contains('className')*.
 *$(this).attr('id')* can be replaced with *event.target.id*;
 
+
+
+
+#### Implementing Data Binding
+
+ - DOM Manipulation  
+    -   createElement() method
+    -   setAttribute() method
+    -   textContent property
+    -   appendChild() method
+
+```
+<div>
+    <p className="city">{props.city}</p>
+    <p>{props.degCInt}&#176; C / {props.degFInt}&#176; F <img src={props.icon} alt={props.condition} /></p>
+</div>
+
+
+let container = document.createElement('div');
+let cityPara = document.createElement('p');
+cityPara.setAttribute('class','city');
+cityPara.textContent = state.city;
+
+let conditionsPara = document.createElement('p');
+conditionsPara.textContent = state.degCInt+ '\u00B0 C / '+ state.degFInt+' F';
+let iconImage = document.createElement('img');
+iconImage.setAttribute('src',state.icon);
+iconImage.setAttribute('alt',state.condition);
+
+
+conditionsPara.appendChild(iconImage);
+container.appendChild(cityPara);
+container.appendChild(conditionsPara);
+
+```
 
 
 
