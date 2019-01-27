@@ -15,7 +15,8 @@ Framework - Framework calls your code
 
 Fetch API which is built on the PROMISE API, mostly all modern browser support.
 
-``
+```
+
     fetch(url + location + '&appid=' + apiKey).then(function(response){
     //This step in must as in case of PROMISE API, it is handled by library
     //however, here we are using vanilla javascript code hence we need to handle it on our own
@@ -27,7 +28,7 @@ Fetch API which is built on the PROMISE API, mostly all modern browser support.
         updateUIFailure();
     });
 
-``
+```
 
 #### Select and Modify DOM Element
 
@@ -46,11 +47,59 @@ $('#ID/CLASS Selector').val() would be replaced with document.querySelector("#ID
 $('.option div').removeClass('nameOFClass') - This selector remove passed class from all the selector, and the internal looping here is called **Implicit Iteration**
 
 However, document.querySelectorAll('.option div') does not iterate implicitly but returns multiple elements in a(n) array-like object, hence we need to form a loop to perfrom required operaton on each selector.
+
 ``
+
 document.querySelectorAll('.options div').forEach(function(el){
     el.classList.remove('selected');
 })
+
 ``
+
+#### Replace Event Listeners
+    -   Select Element
+    -   Sepcify Event
+    -   Specify what should happen in response to the EVENT
+
+**Jquery way**
+
+```
+
+$('.nav li').on('click', function(){
+    //What shoud happen
+})
+
+```
+
+**Vanilla JavaScript**
+
+```
+
+document.querySelector('li').addEventListener('click', function(e){
+    //What should happen
+}, false); //The third element is an optional element which specify whether the event uses event capturing (Which modern browser by default assume false if the event is not specified )
+
+bubbling phase - starting with the target’s parent and ending with the Window. 
+capturing phase - starting from the Window to the target’s parent.
+
+false -> Register the event handler for the bubbling phase.
+true -> Register the event handler for the capturing phase.
+```
+OR 
+
+For event registration in vanilla javascript
+document.querySelector('li').onclick = listHandler;
+
+OR
+
+You can register event by :
+<li onclick="listHandler"></li> (although best practice is to separate javascript code from html code )
+
+
+**Working with "THIS" object**
+So instead of *$(this).hasClass('className')*, we can use *event.target.classList.contains('className')*.
+*$(this).attr('id')* can be replaced with *event.target.id*;
+
 
 
 
