@@ -21,12 +21,6 @@
 		const location = document.querySelector('#location').value;
 		document.querySelector("#location").value = '';
 
-		//  $.get(url + location + '&appid=' + apiKey).done(function(response) {
-		//  	updateUISuccess(response);
-		//  }).fail(function() {
-		//  	updateUIFailure();
-		//  });
-
 		 fetch(url + location + '&appid=' + apiKey).then(function(response){
 		 	return (response.json());
 		 }).then(function(response) {
@@ -143,7 +137,7 @@
 			into.appendChild(container);
 		}
 		
-		$('.results').slideDown(300);
+		document.querySelector('.results').classList.add('open');
 	}
 
 	// handle ajax failure

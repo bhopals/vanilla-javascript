@@ -142,6 +142,8 @@ container.appendChild(conditionsPara);
 ```
 
 
+#### Replace Simple Animations
+
 
 ### Demo
 
