@@ -242,10 +242,15 @@
 </div><!-- container -->
 </footer><!-- footer -->
 
-<script src="js/babel.js"></script>
-<script src="js/react.js"></script>
-<script src="js/react-dom.js"></script>
-<script src="js/jquery-3.2.1.min.js"></script>
-<script src="js/script.js" type="text/babel"></script>
+<!-- Modern Browser -->
+<script src="js/script.js"></script>
+
+<!-- Older Browser -->
+<!-- First file is the transpiled version of script.js. The second and third file we
+  have added to resolve FETCH Api dependency.
+<script src="js/script-transpiled.js"></script>
+<script src="js/fetch.js"></script>
+<script src="js/promise.min.js"></script>
+-->
 </body>
 </html>

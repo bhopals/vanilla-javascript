@@ -143,6 +143,17 @@ container.appendChild(conditionsPara);
 
 
 #### Replace Simple Animations
+Instead of using JQUERY **slide** method, we can use CSS3 Transition/keyframes for any animations.
+
+
+#### Backward Compatibility and Transpiling
+
+**Babel** is commonly used to transpile ES6 code.
+
+If the script is transpiled then we need to use <script src="js/script.js" type="text/babel"></script>, so 
+browser would know its transpiled version.
+
+In case of normal/generic javascript we should use <script src="js/script.js"></script>
 
 
 ### Demo
