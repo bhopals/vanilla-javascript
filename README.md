@@ -1,4 +1,4 @@
-
+﻿
 
 ## Vanilla JavaScript
 
@@ -10,6 +10,7 @@ The Demo site demonstrate how we can unplug library and framework code and repla
 ### Learning App Building with Vanilla JavaScript
 
 Library - Your code calls library
+
 Framework - Framework calls your code
 
 
@@ -50,6 +51,7 @@ $('.option div').removeClass('nameOFClass') - This selector remove passed class 
 
 However, document.querySelectorAll('.option div') does not iterate implicitly but returns multiple elements in a(n) array-like object, hence we need to form a loop to perfrom required operaton on each selector.
 
+
 ```
 
 document.querySelectorAll('.options div').forEach(function(el){
@@ -58,18 +60,23 @@ document.querySelectorAll('.options div').forEach(function(el){
 
 ```
 
+
 #### Replace Event Listeners
     -   Select Element
     -   Sepcify Event
     -   Specify what should happen in response to the EVENT
 
+
+
 **Jquery way**
+
 
 ```
 
 $('.nav li').on('click', function(){
     //What shoud happen
 })
+
 
 ```
 
